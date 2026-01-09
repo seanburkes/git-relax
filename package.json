@@ -7,9 +7,13 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "lint": "nx lint"
+    "lint": "nx lint",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint:biome": "biome check ."
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
     "@nx/eslint": "^22.3.3",
     "@nx/jest": "^22.3.3",
     "@nx/js": "^22.3.3",
