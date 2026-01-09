@@ -5,7 +5,12 @@ export default defineConfig({
   plugins: [sveltekit()],
   server: {
     port: 5173,
-    strictPort: false
+    strictPort: false,
+    host: '0.0.0.0',
+    hmr: {
+      protocol: 'ws',
+      host: '0.0.0.0'
+    }
   },
   build: {
     target: 'es2022'
