@@ -6,6 +6,19 @@ export default defineConfig({
   test: {
     include: ['src/**/*.{test,spec}.{js,ts}'],
     globals: true,
-    setupFiles: ['./src/vitest-setup.ts']
-  }
+    setupFiles: ['./src/vitest-setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      exclude: [
+        'node_modules/',
+        '.svelte-kit/',
+        'build/',
+        'coverage/',
+        '*.config.js',
+        '*.config.ts',
+        'src/lib/msw/',
+      ],
+    },
+  },
 });
