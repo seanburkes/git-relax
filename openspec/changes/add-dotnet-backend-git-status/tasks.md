@@ -5,7 +5,7 @@
 - [ ] 1.3 Create `packages/domain-git/` package for shared git domain types
 - [ ] 1.4 Configure build targets for backend in `project.json`
 - [ ] 1.5 Set up .NET project references and solution file
-- [ ] 1.6 Add LibGit2Sharp NuGet package or git CLI wrapper
+- [x] 1.6 Add LibGit2Sharp NuGet package or git CLI wrapper (using git CLI wrapper)
 
 ## 2. Git Status Service
 
