@@ -86,7 +86,7 @@ public class GitStatusService : IGitStatusService
 
             _logger.LogInformation("Git command succeeded with exit code {ExitCode}", process.ExitCode);
 
-            return ParseGitStatusOutput(output, repoPath);
+            return await ParseGitStatusOutput(output, repoPath);
         }
         catch (Exception ex) when (ex is not DirectoryNotFoundException)
         {
@@ -98,7 +98,7 @@ public class GitStatusService : IGitStatusService
     /// <summary>
     /// Parse git status --porcelain=v2 output
     /// </summary>
-    private GitStatusResponse ParseGitStatusOutput(string output, string repoPath)
+    private async Task<GitStatusResponse> ParseGitStatusOutput(string output, string repoPath)
     {
         var response = new GitStatusResponse
         {
