@@ -45,6 +45,13 @@
         "command": "pnpm run lint",
         "cwd": "apps/web"
       }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run e2e",
+        "cwd": "apps/web"
+      }
     }
   },
   "tags": []
