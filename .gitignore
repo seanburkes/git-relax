@@ -1,0 +1,15 @@
+# .NET
+apps/backend/bin/
+apps/backend/obj/
+packages/*/bin/
+packages/*/obj/
+
+# Nx
+.nx/
+dist/
+
+# Node
+node_modules/
+
+# OpenSpec temporary
+.openspec-temp/
