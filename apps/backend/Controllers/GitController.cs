@@ -48,7 +48,7 @@ public class GitController : ControllerBase
                 return BadRequest(new ErrorResponse
                 {
                     Error = "Path parameter is required",
-                    Code = "PATH_REQUIRED"
+                    Code = ErrorCode.PathRequired
                 });
             }
 
@@ -63,7 +63,7 @@ public class GitController : ControllerBase
             return BadRequest(new ErrorResponse
             {
                 Error = ex.Message,
-                Code = "INVALID_PATH",
+                Code = ErrorCode.InvalidPath,
                 Path = path
             });
         }
@@ -74,7 +74,7 @@ public class GitController : ControllerBase
             return BadRequest(new ErrorResponse
             {
                 Error = $"Directory not found: {path}",
-                Code = "DIRECTORY_NOT_FOUND",
+                Code = ErrorCode.DirectoryNotFound,
                 Path = path
             });
         }
@@ -85,7 +85,7 @@ public class GitController : ControllerBase
             return BadRequest(new ErrorResponse
             {
                 Error = $"Not a git repository: {path}",
-                Code = "NOT_GIT_REPOSITORY",
+                Code = ErrorCode.NotGitRepository,
                 Path = path
             });
         }
@@ -96,7 +96,7 @@ public class GitController : ControllerBase
             return StatusCode(StatusCodes.Status403Forbidden, new ErrorResponse
             {
                 Error = $"Permission denied: {path}",
-                Code = "PERMISSION_DENIED",
+                Code = ErrorCode.PermissionDenied,
                 Path = path
             });
         }
@@ -107,7 +107,7 @@ public class GitController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResponse
             {
                 Error = "An error occurred while retrieving git status",
-                Code = "INTERNAL_ERROR"
+                Code = ErrorCode.InternalError
             });
         }
     }

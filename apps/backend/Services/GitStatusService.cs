@@ -84,6 +84,8 @@ public class GitStatusService : IGitStatusService
                 throw new InvalidOperationException($"Git command failed: {error}");
             }
 
+            _logger.LogInformation("Git command succeeded with exit code {ExitCode}", process.ExitCode);
+
             return ParseGitStatusOutput(output, repoPath);
         }
         catch (Exception ex) when (ex is not DirectoryNotFoundException)
@@ -108,7 +110,12 @@ public class GitStatusService : IGitStatusService
             UntrackedFiles = new()
         };
 
-        var lines = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        // Normalize line endings and remove empty lines
+        var lines = output
+            .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(line => line.Trim())
+            .Where(line => !string.IsNullOrWhiteSpace(line))
+            .ToArray();
 
         foreach (var line in lines)
         {
@@ -122,55 +129,68 @@ public class GitStatusService : IGitStatusService
                 continue;
             }
 
-            // Parse file status
-            if (line.Length >= 2 && line[0] != '#')
+            // Validate line length before parsing
+            if (line.Length < 2 || line[0] == '#')
             {
-                var statusCode = line[..2];
-                var filePath = line[3..].Trim();
+                _logger.LogWarning("Skipping malformed git status line: {Line}", line);
+                continue;
+            }
 
-                var fileChange = new GitFileChange
+            var statusCode = line.Substring(0, 2);
+            var filePath = line.Substring(3).Trim();
+
+            // Handle renamed/copied files (R old -> new or C old -> new format)
+            if ((statusCode[0] == 'R' || statusCode[0] == 'C') && filePath.Contains(" -> "))
+            {
+                var arrowIndex = filePath.IndexOf(" -> ");
+                if (arrowIndex > 0)
+                {
+                    filePath = filePath.Substring(arrowIndex + 3).Trim();
+                }
+            }
+
+            var fileChange = new GitFileChange
+            {
+                Path = filePath,
+                Status = ParseFileStatus(statusCode),
+                IsStaged = statusCode[0] != ' ' && statusCode[0] != '?'
+            };
+
+            // Task 2.6: Categorize files by status
+            if (statusCode == "??")
+            {
+                response.UntrackedFiles.Add(fileChange);
+            }
+            else if (statusCode[0] != ' ' && statusCode[1] == ' ')
+            {
+                response.StagedFiles.Add(fileChange);
+            }
+            else if (statusCode[0] == ' ' && statusCode[1] != ' ')
+            {
+                response.UnstagedFiles.Add(fileChange);
+            }
+            else if (statusCode[0] != ' ' && statusCode[1] != ' ')
+            {
+                // File has both staged and unstaged changes
+                response.StagedFiles.Add(new GitFileChange
                 {
                     Path = filePath,
                     Status = ParseFileStatus(statusCode),
-                    IsStaged = statusCode[0] != ' ' && statusCode[0] != '?'
-                };
-
-                // Task 2.6: Categorize files by status
-                if (statusCode == "??")
+                    IsStaged = true
+                });
+                response.UnstagedFiles.Add(new GitFileChange
                 {
-                    response.UntrackedFiles.Add(fileChange);
-                }
-                else if (statusCode[0] != ' ' && statusCode[1] == ' ')
-                {
-                    response.StagedFiles.Add(fileChange);
-                }
-                else if (statusCode[0] == ' ' && statusCode[1] != ' ')
-                {
-                    response.UnstagedFiles.Add(fileChange);
-                }
-                else if (statusCode[0] != ' ' && statusCode[1] != ' ')
-                {
-                    // File has both staged and unstaged changes
-                    response.StagedFiles.Add(new GitFileChange
-                    {
-                        Path = filePath,
-                        Status = ParseFileStatus(statusCode),
-                        IsStaged = true
-                    });
-                    response.UnstagedFiles.Add(new GitFileChange
-                    {
-                        Path = filePath,
-                        Status = ParseFileStatus(statusCode),
-                        IsStaged = false
-                    });
-                }
+                    Path = filePath,
+                    Status = ParseFileStatus(statusCode),
+                    IsStaged = false
+                });
             }
         }
 
         // Try to get current commit info
         try
         {
-            var commitInfo = GetLatestCommit(repoPath);
+            var commitInfo = await GetLatestCommitAsync(repoPath);
             response.CommitHash = commitInfo.hash;
             response.CommitMessage = commitInfo.message;
         }
@@ -203,7 +223,7 @@ public class GitStatusService : IGitStatusService
     /// <summary>
     /// Get latest commit hash and message
     /// </summary>
-    private (string hash, string message) GetLatestCommit(string repoPath)
+    private async Task<(string hash, string message)> GetLatestCommitAsync(string repoPath)
     {
         var startInfo = new ProcessStartInfo
         {
@@ -222,7 +242,43 @@ public class GitStatusService : IGitStatusService
         var output = process.StandardOutput.ReadToEnd();
         process.WaitForExit();
 
-        var parts = output.Split('|');
-        return parts.Length >= 2 ? (parts[0], parts[1]) : ("unknown", "unknown");
+        // Validate output before splitting
+        if (string.IsNullOrWhiteSpace(output))
+        {
+            _logger.LogWarning("Git log returned empty output");
+            return ("unknown", "unknown");
+        }
+
+        // Split and validate format
+        var parts = output.Split('|', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length >= 2)
+        {
+            var hash = parts[0].Trim();
+            var message = parts[1].Trim();
+
+            // Validate hash is valid SHA-1 (40 hex characters)
+            if (hash.Length == 40 && IsHexString(hash))
+            {
+                return (hash, message);
+            }
+        }
+
+        _logger.LogWarning("Invalid git log format: {Output}", output);
+        return ("unknown", "unknown");
+    }
+
+    /// <summary>
+    /// Check if string is valid hexadecimal
+    /// </summary>
+    private static bool IsHexString(string value)
+    {
+        foreach (char c in value)
+        {
+            if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -6,7 +6,7 @@ namespace GitRelax.Backend.Models;
 public enum GitFileStatus
 {
     /// <summary>
-    /// File has been added to the staging area
+    /// File has been added to staging area
     /// </summary>
     Added,
     

@@ -32,6 +32,9 @@ builder.Services.AddScoped<IGitStatusService, GitStatusService>();
 var app = builder.Build();
 
 // Configure HTTP request pipeline
+app.UseCors("AllowFrontend");
+app.UseHttpsRedirection();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -41,10 +44,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors("AllowFrontend");
-app.UseAuthorization();
 app.MapControllers();
-app.UseHttpsRedirection();
 
 // Health check endpoint
 app.MapGet("/health", () => Results.Ok(new { status = "healthy", timestamp = DateTime.UtcNow }))
