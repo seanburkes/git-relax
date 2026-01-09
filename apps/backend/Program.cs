@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using GitRelax.Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to container
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -25,6 +27,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IGitStatusService, GitStatusService>();
+
 var app = builder.Build();
 
 // Configure HTTP request pipeline
@@ -38,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowFrontend");
+app.UseAuthorization();
+app.MapControllers();
 app.UseHttpsRedirection();
 
 // Health check endpoint
