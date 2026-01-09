@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{8DB667BD-2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitRelax.Backend", "apps\backend\GitRelax.Backend.csproj", "{3EAFFF60-0165-4D13-9F50-3ED9827A5A95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitRelax.Backend.Tests", "apps\backend\GitRelax.Backend.Tests.csproj", "{307B8A00-C887-4ADF-B59A-71E4090E6B3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +22,13 @@ Global
 		{3EAFFF60-0165-4D13-9F50-3ED9827A5A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EAFFF60-0165-4D13-9F50-3ED9827A5A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EAFFF60-0165-4D13-9F50-3ED9827A5A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307B8A00-C887-4ADF-B59A-71E4090E6B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307B8A00-C887-4ADF-B59A-71E4090E6B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307B8A00-C887-4ADF-B59A-71E4090E6B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307B8A00-C887-4ADF-B59A-71E4090E6B3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3EAFFF60-0165-4D13-9F50-3ED9827A5A95} = {8DB667BD-2E46-44BE-A84D-5B9BA85CE030}
+		{307B8A00-C887-4ADF-B59A-71E4090E6B3A} = {8DB667BD-2E46-44BE-A84D-5B9BA85CE030}
 	EndGlobalSection
 EndGlobal

@@ -7,7 +7,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "dotnet build",
+        "command": "dotnet build GitRelax.Backend.csproj",
         "cwd": "apps/backend"
       },
       "cache": true
@@ -15,7 +15,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "dotnet test",
+        "command": "dotnet test GitRelax.Backend.Tests/GitRelax.Backend.Tests.csproj",
         "cwd": "apps/backend"
       },
       "cache": true

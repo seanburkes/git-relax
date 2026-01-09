@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GitRelax.Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac1f1f696d24fe85361d4a2df1107e3fcac401dc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ae8cd8d99193e83a879480f35bc45ce3b53340d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GitRelax.Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GitRelax.Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

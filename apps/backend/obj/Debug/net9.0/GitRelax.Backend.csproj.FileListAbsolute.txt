@@ -35,3 +35,4 @@
 /home/sean/src/git-relax/apps/backend/obj/Debug/net9.0/GitRelax.Backend.genruntimeconfig.cache
 /home/sean/src/git-relax/apps/backend/obj/Debug/net9.0/ref/GitRelax.Backend.dll
 /home/sean/src/git-relax/apps/backend/bin/Debug/net9.0/project.json
+/home/sean/src/git-relax/apps/backend/obj/Debug/net9.0/GitRelax.Backend.sourcelink.json
