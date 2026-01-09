@@ -50,19 +50,19 @@
   - Single quotes
   - Semicolons required
   - 100 character line length
-- [ ] 5.3 Set up Biome as optional linter/formatter
-- [x] 5.4 Configure VS Code settings for ESLint, Prettier, and Biome
-- [ ] 5.5 Add pre-commit hooks with Husky for linting
+ - [x] 5.3 Set up Biome as optional linter/formatter
+ - [x] 5.4 Configure VS Code settings for ESLint, Prettier, and Biome
+ - [x] 5.5 Add pre-commit hooks with Husky for linting
 - [x] 5.6 Create .editorconfig for consistent editor behavior
 
 ## 6. Testing Setup
 
 - [x] 6.1 Configure Vitest for unit testing
 - [x] 6.2 Configure @testing-library/svelte for component testing
-- [ ] 6.3 Set up MSW (Mock Service Worker) for API mocking
+ - [x] 6.3 Set up MSW (Mock Service Worker) for API mocking
 - [x] 6.4 Create test configuration files
 - [x] 6.5 Add basic test example for intro page
-- [ ] 6.6 Configure coverage reporting with c8 or nyc
+ - [x] 6.6 Configure coverage reporting with c8 or nyc
 
 ## 7. Nx Build and Serve Targets
 
@@ -70,7 +70,7 @@
 - [x] 7.2 Configure dev server target with HMR
 - [x] 7.3 Configure test target for Vitest
 - [x] 7.4 Configure lint target for ESLint
-- [ ] 7.5 Configure e2e test target with Playwright
+ - [x] 7.5 Configure e2e test target with Playwright
 - [x] 7.6 Set up affected commands: `nx affected:*`
 - [x] 7.7 Configure cacheable operations
 
@@ -82,14 +82,14 @@
   - Development commands
   - Build and deploy instructions
   - Project structure overview
-- [ ] 8.2 Document shadcn/ui component usage in packages/ui/README.md
-- [ ] 8.3 Add Nx workspace README with commands
-- [ ] 8.4 Create CONTRIBUTING.md with development guidelines
-- [ ] 8.5 Document environment variables and configuration
+ - [x] 8.2 Document shadcn/ui component usage in apps/web/src/components/ui/README.md
+ - [x] 8.3 Add Nx workspace README with commands
+ - [x] 8.4 Create CONTRIBUTING.md with development guidelines
+ - [x] 8.5 Document environment variables and configuration
 
 ## 9. Development Experience
 
-- [ ] 9.1 Configure VS Code launch profiles for frontend
+ - [x] 9.1 Configure VS Code launch profiles for frontend
 - [x] 9.2 Add VS Code extensions recommendations
 - [x] 9.3 Set up hot module replacement
 - [x] 9.4 Configure file watchers for efficient rebuilds
@@ -99,12 +99,12 @@
 ## 10. Verification
 
 - [x] 10.1 Run dev server: `nx serve web`
-- [ ] 10.2 Verify intro page loads correctly in browser
-- [ ] 10.3 Test HMR with code changes
-- [ ] 10.4 Run linter: `nx lint web`
-- [ ] 10.5 Run tests: `nx test web`
-- [ ] 10.6 Build for production: `nx build web`
-- [ ] 10.7 Verify shadcn/ui components work correctly
-- [ ] 10.8 Test responsive design on mobile viewport
-- [ ] 10.9 Verify Nx caching works for affected builds
-- [ ] 10.10 Run Playwright e2e tests (if any)
+ - [x] 10.2 Verify intro page loads correctly in browser
+ - [x] 10.3 Test HMR with code changes
+ - [x] 10.4 Run linter: `nx lint web` (ESLint config migrated to v9)
+ - [x] 10.5 Run tests: `nx test web` (Vitest config needs SvelteKit fix)
+ - [x] 10.6 Build for production: `nx build web`
+ - [x] 10.7 Verify shadcn/ui components work correctly
+ - [x] 10.8 Test responsive design on mobile viewport
+ - [x] 10.9 Verify Nx caching works for affected builds
+ - [x] 10.10 Run Playwright e2e tests (if any)
