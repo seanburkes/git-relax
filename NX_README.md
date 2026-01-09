@@ -32,6 +32,31 @@ pnpm install
 pnpm run e2e:install
 ```
 
+## Docker Setup
+
+You can also run the entire stack using Docker Compose:
+
+```bash
+# Start both services with a single command
+docker compose up
+
+# Access services
+# Frontend: http://localhost:5173
+# Backend API: http://localhost:5000
+# Swagger UI: http://localhost:5000/swagger
+
+# Stop services
+docker compose down
+```
+
+The Docker setup includes:
+- Hot-reload development for both frontend and backend
+- Volume mounts for instant code updates
+- Access to local `~/src/` for Git operations
+- Automatic dependency installation
+
+See [DOCKER.md](DOCKER.md) for comprehensive Docker documentation and troubleshooting.
+
 ## Available Scripts
 
 ### Nx Commands

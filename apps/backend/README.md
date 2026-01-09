@@ -143,6 +143,28 @@ apps/backend/
 - Includes comprehensive logging for debugging
 - Uses xUnit for testing
 
+## Docker
+
+You can also run this service using Docker Compose:
+
+```bash
+# Start both frontend and backend with Docker
+docker compose up
+
+# Access API
+http://localhost:5000
+
+# Stop services
+docker compose down
+```
+
+The Docker setup includes:
+- Volume mounts for hot-reload development
+- Mount to local `~/src/` for Git operations
+- Swagger UI available at http://localhost:5000/swagger
+
+See [DOCKER.md](../../DOCKER.md) for detailed Docker documentation.
+
 ## Future Enhancements
 
 - Support for more git operations (commit, push, pull, etc.)

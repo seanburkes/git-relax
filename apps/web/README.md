@@ -142,3 +142,25 @@ pnpm run preview
 ```
 
 Built files are output to `.svelte-kit/output/`.
+
+## Docker
+
+You can also run this service using Docker Compose:
+
+```bash
+# Start both frontend and backend with Docker
+docker compose up
+
+# Access frontend
+http://localhost:5173
+
+# Stop services
+docker compose down
+```
+
+The Docker setup includes:
+- Volume mounts for hot-reload development
+- Automatic dependency installation
+- Networking with backend service
+
+See [DOCKER.md](../../DOCKER.md) for detailed Docker documentation.
