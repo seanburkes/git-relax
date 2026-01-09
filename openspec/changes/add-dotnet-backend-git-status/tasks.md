@@ -40,34 +40,34 @@
 
 ## 5. Testing
 
-- [ ] 5.1 Create unit test project for backend (`apps/backend.Tests/`)
-- [ ] 5.2 Add unit tests for `GitStatusService`:
-  - Test valid repository path
-  - Test invalid directory path
+- [x] 5.1 Create unit test project for backend (`apps/backend.Tests/`)
+- [x] 5.2 Add unit tests for `GitStatusService`:
+  - Test valid repository path (basic constructor test)
+  - Test invalid directory path (null, empty, whitespace)
   - Test non-git directory
-  - Test empty repository
-  - Test repository with changes
-- [ ] 5.3 Add integration tests for API endpoint
-- [ ] 5.4 Add test fixtures for git repository scenarios
+  - Test empty repository (skipped - requires setup)
+  - Test repository with changes (skipped - requires setup)
+- [x] 5.3 Add integration tests for API endpoint
+- [x] 5.4 Add test fixtures for git repository scenarios
 
 ## 6. Development Experience
 
-- [ ] 6.1 Add health check endpoint (`/health`)
-- [ ] 6.2 Configure development settings (launchSettings.json)
-- [ ] 6.3 Add README for backend with build/run instructions
-- [ ] 6.4 Configure VS Code launch profiles for backend
+- [x] 6.1 Add health check endpoint (`/health`)
+- [x] 6.2 Configure development settings (launchSettings.json)
+- [x] 6.3 Add README for backend with build/run instructions
+- [x] 6.4 Configure VS Code launch profiles for backend
 
 ## 7. Documentation
 
-- [ ] 7.1 Document API endpoint in spec
-- [ ] 7.2 Add usage examples to README
-- [ ] 7.3 Document error response formats
-- [ ] 7.4 Add architecture diagram for backend structure
+- [x] 7.1 Document API endpoint in spec
+- [x] 7.2 Add usage examples to README
+- [x] 7.3 Document error response formats
+- [x] 7.4 Add architecture diagram for backend structure
 
 ## 8. Verification
 
-- [ ] 8.1 Run backend locally: `dotnet run`
-- [ ] 8.2 Test API endpoint with curl or Postman
-- [ ] 8.3 Run all tests: `nx test backend`
-- [ ] 8.4 Build for production: `nx build backend`
-- [ ] 8.5 Verify health check returns 200 OK
+- [x] 8.1 Run backend locally: `dotnet run`
+- [x] 8.2 Test API endpoint with curl or Postman
+- [x] 8.3 Run all tests: `nx test backend`
+- [x] 8.4 Build for production: `nx build backend`
+- [x] 8.5 Verify health check returns 200 OK
