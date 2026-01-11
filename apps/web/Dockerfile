@@ -9,8 +9,8 @@ COPY package*.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 FROM base AS dev
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 EXPOSE 5173
 ENV NODE_OPTIONS=--max-old-space-size=2048
 CMD ["pnpm", "run", "dev", "--", "--host", "0.0.0.0"]
