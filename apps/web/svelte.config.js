@@ -7,9 +7,10 @@ const config = {
     alias: {
       $lib: 'src/lib',
       $components: 'src/components',
-      $layouts: 'src/layouts'
-    }
-  }
+      $layouts: 'src/layouts',
+      $stores: 'src/stores',
+    },
+  },
 };
 
 export default config;

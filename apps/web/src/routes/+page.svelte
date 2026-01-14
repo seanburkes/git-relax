@@ -1,121 +1,86 @@
 <script lang="ts">
-  import NavBar from '$components/NavBar.svelte';
-  import Footer from '$components/Footer.svelte';
+import Layout from '$components/Layout.svelte';
+import NavBar from '$components/NavBar.svelte';
+import Footer from '$components/Footer.svelte';
 </script>
 
 <NavBar />
 
-<main class="min-h-screen bg-background">
-  <section class="container mx-auto px-4 py-16 md:py-24">
-    <div class="max-w-3xl mx-auto text-center">
-      <h1 class="text-5xl md:text-7xl font-bold text-foreground mb-6">
-        Modern Git<br />
-        <span class="text-primary">Made Simple</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-muted-foreground mb-8">
-        A beautiful, intuitive web interface for Git operations with a primary focus on
-        worktree management for AI-assisted development workflows.
-      </p>
-      <div class="flex justify-center gap-4 mb-16">
-        <button
-          class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-        >
-          Get Started
-        </button>
-        <button
-          class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors font-medium"
-        >
-          Learn More
-        </button>
+<Layout title="Status">
+  {#snippet children()}
+    <div class="space-y-4">
+      <div class="bg-card border border-border rounded-lg p-4">
+        <h3 class="text-sm font-semibold text-foreground mb-3">Changes</h3>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between p-2 bg-muted/30 rounded">
+            <div class="flex items-center space-x-2">
+              <span class="text-green-500 font-medium">M</span>
+              <span class="text-sm text-foreground">apps/web/src/routes/+page.svelte</span>
+            </div>
+            <span class="text-xs text-muted-foreground">modified</span>
+          </div>
+          <div class="flex items-center justify-between p-2 bg-muted/30 rounded">
+            <div class="flex items-center space-x-2">
+              <span class="text-green-500 font-medium">A</span>
+              <span class="text-sm text-foreground">apps/web/src/components/Layout.svelte</span>
+            </div>
+            <span class="text-xs text-muted-foreground">added</span>
+          </div>
+          <div class="flex items-center justify-between p-2 bg-muted/30 rounded">
+            <div class="flex items-center space-x-2">
+              <span class="text-red-500 font-medium">D</span>
+              <span class="text-sm text-foreground line-through">old-file.txt</span>
+            </div>
+            <span class="text-xs text-muted-foreground">deleted</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-card border border-border rounded-lg p-4">
+        <h3 class="text-sm font-semibold text-foreground mb-3">Unstaged Changes</h3>
+        <div class="text-sm text-muted-foreground italic">No unstaged changes</div>
       </div>
     </div>
+  {/snippet}
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-      <div class="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-            />
-          </svg>
+  {#snippet detailsPanel()}
+    <div class="space-y-4">
+      <div class="bg-card border border-border rounded-lg p-4">
+        <h3 class="text-sm font-semibold text-foreground mb-3">File Details</h3>
+        <div class="text-sm text-muted-foreground">
+          <div class="mb-2">
+            <strong class="text-foreground">File:</strong> apps/web/src/routes/+page.svelte
+          </div>
+          <div class="mb-2"><strong class="text-foreground">Status:</strong> Modified</div>
+          <div><strong class="text-foreground">Changes:</strong> +15, -8</div>
         </div>
-        <h2 class="text-xl font-semibold text-foreground mb-2">Worktree Management</h2>
-        <p class="text-muted-foreground">
-          Create and manage multiple independent worktrees for concurrent development without
-          context switching.
-        </p>
       </div>
 
-      <div class="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"
-            />
-          </svg>
-        </div>
-        <h2 class="text-xl font-semibold text-foreground mb-2">Git Operations</h2>
-        <p class="text-muted-foreground">
-          Complete Git operations from commit, push, pull to advanced features like
-          interactive rebase and cherry-pick.
-        </p>
-      </div>
-
-      <div class="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
-        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            />
-          </svg>
-        </div>
-        <h2 class="text-xl font-semibold text-foreground mb-2">Visual Diff</h2>
-        <p class="text-muted-foreground">
-          Beautiful diff visualization with inline, side-by-side, and unified views for
-          easy code review.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="container mx-auto px-4 py-16 bg-muted/30">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-foreground mb-4">AI-Ready Workflow</h2>
-      <p class="text-lg text-muted-foreground mb-8">
-        Designed for AI-assisted development. Each AI agent works in its own worktree,
-        enabling parallel development and rapid code review.
-      </p>
-      <div class="grid md:grid-cols-2 gap-6 text-left">
-        <div class="bg-card border border-border rounded-lg p-6">
-          <h3 class="text-lg font-semibold text-foreground mb-3">
-            Agent Isolation
-          </h3>
-          <p class="text-muted-foreground text-sm">
-            Each AI agent operates in its own isolated worktree, preventing conflicts
-            and enabling concurrent work.
-          </p>
-        </div>
-        <div class="bg-card border border-border rounded-lg p-6">
-          <h3 class="text-lg font-semibold text-foreground mb-3">
-            Quick Review
-          </h3>
-          <p class="text-muted-foreground text-sm">
-            Streamlined code review workflow for AI-generated code with one-click merge
-            and synchronization.
-          </p>
+      <div class="bg-card border border-border rounded-lg p-4">
+        <h3 class="text-sm font-semibold text-foreground mb-3">Branch Information</h3>
+        <div class="text-sm text-muted-foreground">
+          <div class="mb-2"><strong class="text-foreground">Current:</strong> main</div>
+          <div class="mb-2"><strong class="text-foreground">Ahead:</strong> 0 commits</div>
+          <div class="mb-2"><strong class="text-foreground">Behind:</strong> 1 commit</div>
+          <div><strong class="text-foreground">Remote:</strong> origin/main</div>
         </div>
       </div>
     </div>
-  </section>
-</main>
+  {/snippet}
+
+  {#snippet bottomPanel()}
+    <div class="p-4">
+      <h3 class="text-sm font-semibold text-foreground mb-2">Command Output</h3>
+      <div class="text-xs text-muted-foreground font-mono space-y-1">
+        <div>$ git status</div>
+        <div>On branch main</div>
+        <div>Changes not staged for commit:</div>
+        <div>modified: apps/web/src/routes/+page.svelte</div>
+        <div>new file: apps/web/src/components/Layout.svelte</div>
+        <div>deleted: old-file.txt</div>
+      </div>
+    </div>
+  {/snippet}
+</Layout>
 
 <Footer />
